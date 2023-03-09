@@ -6,7 +6,7 @@ function App() {
   const [result, setResult] = useState("The result will display here.");
 
   const handleSubmit = () => {
-    const { display } = lexicoFunction(text);
+    const { display } = lexicoFunction(text.toLowerCase());
     setResult(display);
   };
   const handleClear = () => {
