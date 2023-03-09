@@ -3,11 +3,15 @@ import lexicoFunction from "./utils/lexical/index.js";
 
 function App() {
   const [text, setText] = useState("");
+  const [result, setResult] = useState("The result will display here.");
 
   const handleSubmit = () => {
-    const lines = text.split("\n");
-    const tokens = lexicoFunction(lines);
-    console.log(tokens);
+    const { display } = lexicoFunction(text);
+    setResult(display);
+  };
+  const handleClear = () => {
+    setText("");
+    setResult("The result will display here.");
   };
 
   return (
@@ -40,20 +44,21 @@ function App() {
         />
         <div className="mt-2">
           <button
-            className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4"
-            onClick={() => console.log(text.split("\n"))}
+            className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            onClick={handleSubmit}
+            disabled={text.length === 0}
           >
             Submit
           </button>
           <button
             className="hover:bg-gray-400 font-medium rounded-sm px-4 py-2 bg-gray-300"
-            onClick={() => setText("")}
+            onClick={handleClear}
           >
             Clear
           </button>
         </div>
         <div className="border w-full bg-gray-300 p-2 mt-4">
-          <p className="mb-2 text-gray-500">The result will display here.</p>
+          <p className="mb-2 text-gray-500">{result}</p>
         </div>
       </div>
     </div>
