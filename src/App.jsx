@@ -1,8 +1,14 @@
 import { useState } from "react";
-import lexicoFunction from "./utils/lexico/index.js";
+import lexicoFunction from "./utils/lexical/index.js";
 
 function App() {
   const [text, setText] = useState("");
+
+  const handleSubmit = () => {
+    const lines = text.split("\n");
+    const tokens = lexicoFunction(lines);
+    console.log(tokens);
+  };
 
   return (
     <div className="font-inter">
@@ -33,11 +39,14 @@ function App() {
           onChange={(e) => setText(e.target.value)}
         />
         <div className="mt-2">
-          <button className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4">
+          <button
+            className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4"
+            onClick={() => console.log(text.split("\n"))}
+          >
             Submit
           </button>
           <button
-            className="font-medium rounded-sm px-4 py-2 bg-gray-300"
+            className="hover:bg-gray-400 font-medium rounded-sm px-4 py-2 bg-gray-300"
             onClick={() => setText("")}
           >
             Clear
