@@ -16,6 +16,7 @@ export const operators = {
   final: "finalizacion",
   "+": "suma",
   "-": "resta",
+  "=": "es igual a",
   "*": "multiplicación",
   "/": "división",
   "^": "Potencia",

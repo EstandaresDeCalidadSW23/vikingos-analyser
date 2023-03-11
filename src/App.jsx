@@ -1,17 +1,39 @@
 import { useState } from "react";
+import Check from "./icons/Check";
 import lexicoFunction from "./utils/lexical/index.js";
+import syntacticFunction from "./utils/syntactic/index";
 
 function App() {
   const [text, setText] = useState("");
+  const [count, setCount] = useState({});
   const [result, setResult] = useState("The result will display here.");
+  const [mode, setMode] = useState("lexical");
 
   const handleSubmit = () => {
-    const { display } = lexicoFunction(text.toLowerCase());
-    setResult(display);
+    if (mode === "syntactic") {
+      const input = syntacticFunction(text.toLowerCase());
+      console.log(input);
+      setResult(input);
+      setCount({});
+    } else {
+      const { display, count } = lexicoFunction(text.toLowerCase());
+      setResult(display);
+      setCount(count);
+    }
   };
+
   const handleClear = () => {
     setText("");
+    setCount({});
     setResult("The result will display here.");
+  };
+
+  const handleChangeModel = () => {
+    if (mode === "lexical") {
+      setMode("syntactic");
+    } else {
+      setMode("lexical");
+    }
   };
 
   return (
@@ -26,11 +48,13 @@ function App() {
             name="analyser"
             id="analyser-select"
             className="border px-4 py-2 "
+            value={mode}
+            onChange={handleChangeModel}
           >
             <option className="px-2" value="lexico">
               Lexical
             </option>
-            <option className="px-2" value="sintactico">
+            <option className="px-2" value="syntactic">
               Syntactic
             </option>
           </select>
@@ -42,24 +66,50 @@ function App() {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <div className="mt-2">
-          <button
-            className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4 disabled:bg-gray-300 disabled:cursor-not-allowed"
-            onClick={handleSubmit}
-            disabled={text.length === 0}
-          >
-            Submit
-          </button>
-          <button
-            className="hover:bg-gray-400 font-medium rounded-sm px-4 py-2 bg-gray-300"
-            onClick={handleClear}
-          >
-            Clear
-          </button>
+        <div className="mt-2 flex justify-between">
+          <div className="">
+            <button
+              className="font-medium text-white rounded-sm px-4 py-2 bg-[#f67e02] hover:bg-[#d5791d] mr-4 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              onClick={handleSubmit}
+              disabled={text.length === 0}
+            >
+              Submit
+            </button>
+            <button
+              className="hover:bg-gray-400 font-medium rounded-sm px-4 py-2 bg-gray-300"
+              onClick={handleClear}
+            >
+              Clear
+            </button>
+          </div>
         </div>
         <div className="border w-full bg-gray-300 p-2 mt-4">
           <p className="mb-2 text-gray-500">{result}</p>
         </div>
+        {Object.keys(count).length !== 0 && (
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="flex gap-x-2">
+              <Check className="w-6 h-6" />
+              <p>Reserved Words:</p>
+              <p>{count.pr}</p>
+            </div>
+            <div className="flex gap-x-2">
+              <Check className="w-6 h-6" />
+              <p>Symbols:</p>
+              <p>{count.simbolos}</p>
+            </div>
+            <div className="flex gap-x-2">
+              <Check className="w-6 h-6" />
+              <p>Numbers:</p>
+              <p>{count.numeros}</p>
+            </div>
+            <div className="flex gap-x-2">
+              <Check className="w-6 h-6" />
+              <p>Identifier:</p>
+              <p>{count.identificadores}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
