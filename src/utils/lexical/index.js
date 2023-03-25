@@ -72,6 +72,7 @@ function lexico(code) {
 
   return {
     display: display.trim(),
+    result,
     count: {
       pr,
       simbolos,

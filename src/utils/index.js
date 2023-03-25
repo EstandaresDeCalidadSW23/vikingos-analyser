@@ -32,20 +32,13 @@ export const operators = {
   ")": "fin",
 };
 
-// export const instructions = {
-//   if: "si",
-//   switch: "cambiar",
-//   while: "mientras",
-//   try: "intentar",
-//   print: "imprimir",
-//   else: "otro",
-//   break: "romper",
-//   continue: "continuar",
-//   return: "regresar",
-//   catch: "capturar",
-//   throw: "lanzar",
-//   public: "publico",
-//   private: "privado",
-//   static: "estatico",
-//   final: "finalizacion",
-// };
+export const messageErrorMissingParenthesis =
+  "Error: Falta el paréntesis de cierre";
+export const messageErrorMissingCurlyBracket =
+  "Error: Falta la llave de cierre";
+export const messageErrorMissingOpeningCurlyBracket =
+  "Error: Falta la llave de apertura";
+
+export const messageErrorMissingOpeningParenthesis =
+  "Error: Falta el paréntesis de apertura";
+export const messageSyntaxAnalysisSuccessful = "Análisis sintáctico exitoso";

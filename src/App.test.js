@@ -1,3 +1,10 @@
+import {
+  messageErrorMissingCurlyBracket,
+  messageErrorMissingOpeningCurlyBracket,
+  messageErrorMissingOpeningParenthesis,
+  messageErrorMissingParenthesis,
+  messageSyntaxAnalysisSuccessful,
+} from "./utils";
 import lexical from "./utils/lexical";
 import syntactic from "./utils/syntactic";
 
@@ -35,10 +42,30 @@ describe("lexical", () => {
 describe("syntactic", () => {
   test("ie1", () => {
     const input = syntactic("if(x<7){x=x+1}else{x=x+2}");
-    expect(input).toBe("Syntax analysis successful");
+    expect(input).toBe(messageSyntaxAnalysisSuccessful);
   });
   test("ie2", () => {
     const input = syntactic("ifx<7){x=x+1}else{x=x+2}");
-    expect(input).toBe("Error: Missing opening parenthesis");
+    expect(input).toBe(messageErrorMissingOpeningParenthesis);
+  });
+  test("ie21", () => {
+    const input = syntactic("(x<7){x=x+1}else{x=x+2}");
+    expect(input).toBe(messageSyntaxAnalysisSuccessful);
+  });
+  test("ie3", () => {
+    const input = syntactic("if(x<7{x=x+1}else{x=x+2}");
+    expect(input).toBe(messageErrorMissingParenthesis);
+  });
+  test("ie4", () => {
+    const input = syntactic("if(x<7){x=x+1}else{x=x+2}");
+    expect(input).toBe(messageSyntaxAnalysisSuccessful);
+  });
+  test("ie5", () => {
+    const input = syntactic("if(x<7){x=x+1}else{x=x+2");
+    expect(input).toBe(messageErrorMissingCurlyBracket);
+  });
+  test("ie6", () => {
+    const input = syntactic("if(x<7){x=x+1}else{x=x+2}}");
+    expect(input).toBe(messageErrorMissingOpeningCurlyBracket);
   });
 });
