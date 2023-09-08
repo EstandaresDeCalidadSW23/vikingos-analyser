@@ -1,6 +1,6 @@
 ﻿# Vikingos Analyzer Project Plan
-# Scope
-## **Main functionalities**
+## Scope
+### Main features
 \- Code Entry: Users will be able to enter blocks of code in a specific format.
 
 \- Lexical Analysis: The system will identify and classify lexical tokens in the code.
@@ -9,7 +9,7 @@
 
 \- Error Handling: Clear error messages will be provided in case lexical or syntactic errors are found.
 
-Objectives
+### Objectives
 
 \- Develop a lexical and syntactic analyzer capable of processing and validating user-supplied source code.
 
@@ -18,7 +18,7 @@ Objectives
 \- Provide a friendly user interface for users to enter and verify their code.
 
 \- Ensure efficiency and accuracy in lexical and syntactic analysis
-# **Roles and responsibilities**
+## Roles and responsibilities
 
 
 |**Team member**|**Role**|**Responsibilities**|
@@ -35,7 +35,7 @@ Objectives
 # <a name="_heading=h.4d34og8"></a>**Deliverables**
 
 
-|**Deliverable**|**Descripción**|**Responsable**|
+|**Deliverable**|**Description**|**Responsable**|
 | :-: | :-: | :-: |
 |Documentation|Project documentation covering technical aspects, test analysis, requirements, etc. must be provided.|Gabriel Barraza, Carlos Moriel, Karina Beltrán, Estrella de la Torre, Jair Méndez |
 |MVP|A minimum viable product must be delivered meeting the minimum requirements for software operation.|Carlos Moriel, Daniel Derma, Jair Méndez, Hugo Hernández, Francisco García, Luis Carlos Hernández |
