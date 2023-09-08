@@ -2,7 +2,6 @@
 
 [REQUIREMENTS](https://github.com/EstandaresDeCalidadSW23/vikingos-analyser/issues/21#event-10289307088%20%22REQUIREMENTS%22 "REQUIREMENTS")
 
-##Version 1.0
 ##• Define the MVP product
      Minimal: Contains only the essential features necessary to solve a problem or satisfy a specific user need. All non-critical functionality is removed to simplify early development.
      Viable: It is functional and usable. Although basic, the product must be effective enough to provide real value to users and fulfill its primary purpose.
