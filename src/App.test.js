@@ -68,4 +68,9 @@ describe("syntactic", () => {
     const input = syntactic("if(x<7){x=x+1}else{x=x+2}}");
     expect(input).toBe(messageErrorMissingOpeningCurlyBracket);
   });
+
+  test("comments are allowed", () => {
+    const input = syntactic("# This is a comment");
+    expect(input).toBe(messageSyntaxAnalysisSuccessful);
+  });
 });
