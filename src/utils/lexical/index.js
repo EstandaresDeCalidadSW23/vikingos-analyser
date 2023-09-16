@@ -22,7 +22,7 @@ function lexico(code) {
 
   // Use the pattern to find all matches in the code
   const matches = code.matchAll(new RegExp(pattern, "g"));
-  console.log(code)
+  
   // Convert the matches into an array of tokens
   const result = [];
   let display = "";
