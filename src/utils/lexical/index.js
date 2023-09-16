@@ -73,7 +73,7 @@ function lexico(code) {
        result.push('<COMENTARIO>')
        display += ' <COMENTARIO> ' + value.replace(/#/, "") + " </FIN COMENTARIO> " 
     }
-    console.log("Kind -> ",kind , " Value -> ", value);
+    
   }
 
   return {
