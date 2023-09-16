@@ -18,6 +18,7 @@ function tokenize(code) {
     ["LEFT_BRACE", /\{/],
     ["RIGHT_BRACE", /\}/],
     ["WHITESPACE", /\s+/],
+    ["COMMENT", /#/],
   ];
 
   // Combine the regular expressions into a single pattern

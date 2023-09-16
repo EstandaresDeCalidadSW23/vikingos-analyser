@@ -12,6 +12,7 @@ function lexico(code) {
     ["LEFT_BRACE", /\{/],
     ["RIGHT_BRACE", /\}/],
     ["WHITESPACE", /\s+/],
+    ["COMMENT", /#.*/],
   ];
 
   // Combine the regular expressions into a single pattern
@@ -21,7 +22,7 @@ function lexico(code) {
 
   // Use the pattern to find all matches in the code
   const matches = code.matchAll(new RegExp(pattern, "g"));
-
+  console.log(code)
   // Convert the matches into an array of tokens
   const result = [];
   let display = "";
@@ -67,7 +68,12 @@ function lexico(code) {
       result.push(value);
     } else if (kind !== "WHITESPACE") {
       result.push(value);
+    } 
+    if (kind === "COMMENT") {
+       result.push('<COMENTARIO>')
+       display += ' <COMENTARIO> ' + value.replace(/#/, "") + " </FIN COMENTARIO> " 
     }
+    console.log("Kind -> ",kind , " Value -> ", value);
   }
 
   return {
