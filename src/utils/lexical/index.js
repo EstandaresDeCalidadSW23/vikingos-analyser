@@ -1,6 +1,6 @@
 import { operators } from "..";
 
-function lexico(code) {
+export function lexico(code) {
   // Define the regular expressions for each token type
   const tokens = [
     ["NUMBER", /\d+/],
@@ -76,6 +76,16 @@ function lexico(code) {
     
   }
 
+  console.log({
+    display: display.trim(),
+    result,
+    count: {
+      pr,
+      simbolos,
+      numeros,
+      identificadores,
+    },
+  })
   return {
     display: display.trim(),
     result,
