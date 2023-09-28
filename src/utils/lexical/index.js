@@ -1,10 +1,12 @@
 import { operators } from "..";
 
+
+export function lexico(code) {
+
 const ERROR_MSG = {
   numberIsOutOfTheRange: "El número está fuera del rango permitido",
 }
 
-function lexico(code) {
   // Define the regular expressions for each token type
   const tokens = [
     ["NUMBER", /\d+/],
@@ -16,6 +18,7 @@ function lexico(code) {
     ["LEFT_BRACE", /\{/],
     ["RIGHT_BRACE", /\}/],
     ["WHITESPACE", /\s+/],
+    ["COMMENT", /#.*/],
   ];
 
   // Combine the regular expressions into a single pattern
@@ -25,7 +28,7 @@ function lexico(code) {
 
   // Use the pattern to find all matches in the code
   const matches = code.matchAll(new RegExp(pattern, "g"));
-
+  
   // Convert the matches into an array of tokens
   const result = [];
   let display = "";
@@ -78,9 +81,24 @@ function lexico(code) {
       result.push(value);
     } else if (kind !== "WHITESPACE") {
       result.push(value);
+    } 
+    if (kind === "COMMENT") {
+       result.push('<COMENTARIO>')
+       display += ' <COMENTARIO> ' + value.replace(/#/, "") + " </FIN COMENTARIO> " 
     }
+    
   }
 
+  console.log({
+    display: display.trim(),
+    result,
+    count: {
+      pr,
+      simbolos,
+      numeros,
+      identificadores,
+    },
+  })
   return {
     display: display.trim(),
     result,
