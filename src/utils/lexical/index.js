@@ -10,6 +10,7 @@ const ERROR_MSG = {
   // Define the regular expressions for each token type
   const tokens = [
     ["NUMBER", /\d+/],
+    ["NEGATIVE_NUMBERS", /-\d+/], // added regex for negative numbers
     ["OPERATOR", /[+\-*/%^=]/],
     ["COMPARISON", /[><]=?|==|!=/],
     ["IDENTIFIER", /[a-zA-Z_]\w*/],
@@ -54,6 +55,13 @@ const ERROR_MSG = {
       }
       numeros++;
       result.push(parseInt(value));
+    } else if (kind === "NEGATIVE_NUMBERS") {
+      display += " " + value;
+      console.log({ value })
+      isError = true
+      errorMsg = ERROR_MSG['numberIsOutOfTheRange'] + " " + value
+      numeros++;
+      result.push(parseInt(value));
     } else if (kind === "LEFT_BRACE") {
       display += " " + operators[value];
       simbolos++;
@@ -67,8 +75,8 @@ const ERROR_MSG = {
       result.push(value);
     } else if (kind === "OPERATOR" || kind === "COMPARISON") {
       simbolos++;
-      display += " " + operators[value];
-      result.push(value);
+      display += " " + operators[value];      
+      result.push(value);      
     } else if (kind === "IDENTIFIER") {
       const isPR = Boolean(operators[value]);
       const item = operators[value] ?? value;
